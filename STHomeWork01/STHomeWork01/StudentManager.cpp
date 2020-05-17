@@ -8,7 +8,9 @@ StudentManager::StudentManager()
 {
 	std::cout << "请选择操作："<< std::endl;
 	for (int i = 0; i < 35; i++)
+	{
 		std::cout << '*';
+	}
 	std::cout << std::endl;
 	std::cout << "1 插入" << std::endl;
 	std::cout << "2 查找" << std::endl;
@@ -17,9 +19,10 @@ StudentManager::StudentManager()
 	std::cout << "5 输出" << std::endl;
 	std::cout << "6 退出" << std::endl;
 	for (int i = 0; i < 35; i++)
+	{
 		std::cout << '*';
+	}
 	std::cout << std::endl;
-
 }
 void StudentManager::appswitch()
 {
@@ -27,66 +30,60 @@ void StudentManager::appswitch()
 	std::cin >> number;
 	if (number == 1)
 	{
-		if (this->length < 20)
+		if (this->length < 20) 
+		{
 			this->StudentManager::push();
+		}
 		else
-			std::cout << "数据已达到上限";
-		
+			std::cout << "数据已达到上限";	
 	}
-	if (number == 2)
+	else if (number == 2)
 	{
-		
 		std::cout << "请输入要查询的姓名：（格式与插入信息的格式一致）";
 		std::cout << std::endl;
 		std::string name;
 		std::cin >> name;
 		this->StudentManager::lookup(name);
 	}
-	if (number == 3)
+	else if (number == 3)
 	{
-		
 		std::cout << "请输入要删除数据的学生的姓名：";
 		std::cout << std::endl;
 		std::string name;
 		std::cin >> name;
 		this->StudentManager::cutoff(name);
 	}
-	if (number == 4)
+	else if (number == 4)
 	{
-		
 		std::cout << "请输入要修改信息的学生的姓名：";
 		std::cout << std::endl;
 		std::string name;
 		std::cin >> name;
 		this->StudentManager::modify(name);
 	}
-	if (number == 5)
+	else if (number == 5)
 	{
 		this->StudentManager::print();
 	}
-	if (number == 6)
+	else if (number == 6)
 	{
 		this->shutdown = 1;
 	}
+	else
+	{
+		throw std::string("功能不存在");
+	}
 }
-/*void F5()
-{
-	for(int i=0;i<50;i++)			//打印空行刷新
-		std::cout << std::endl;
-}*/
+
 void StudentManager::push()
 {
 	Student s;
 	if (this->length == 0)
 	{
 		this->StudentManager::sheet.push_back(s.Student::getinfoemation());
-
-		//std::vector<std::string>in = s.Student::getinfoemation();
-
 	}
 	else
-	{		
-															//排序
+	{															//排序
 		std::vector<std::vector<std::string>>rest;
 		for (int i = 0; i < this->length; i++)
 		{
@@ -107,10 +104,8 @@ void StudentManager::push()
 				}
 				break;
 			}
-
 		}
 	}
-	
 	this->length++;
 	std::cout << "数据插入成功";
 }
@@ -121,7 +116,9 @@ void StudentManager::lookup(std::string key)
 	for (int i = 0; i < this->length; i++)
 	{
 		if (this->sheet[i][1] == key)
+		{
 			target = i;
+		}
 	}
 	if (target == -1)
 	{
@@ -144,11 +141,12 @@ void StudentManager::cutoff(std::string key)
 	for (int i = 0; i < this->length; i++)
 	{
 		if (this->sheet[i][1] == key)
+		{
 			target = i;
+		}
 	}
 	if (target == -1)
 	{
-
 		std::cout << "该学生不存在";
 	}
 	else
@@ -176,16 +174,16 @@ void StudentManager::modify(std::string key)
 	for (int i = 0; i < this->length; i++)
 	{
 		if (this->sheet[i][1] == key)
+		{
 			target = i;
+		}
 	}
 	if (target == -1)
 	{
-		//std::cout << std::endl;
 		std::cout << "该学生不存在";
 	}
 	else
 	{
-		
 		std::cout << "请输入修改后的完整学生信息（格式与插入信息的格式一致）：";
 		std::cout << std::endl;
 		std::cin >> this->sheet[target][0];
@@ -194,9 +192,13 @@ void StudentManager::modify(std::string key)
 		std::string temp;
 		std::cin >> temp;
 		if (temp == "0")
+		{
 			this->sheet[target][3] = "男";
+		}
 		if (temp == "1")
+		{
 			this->sheet[target][3] = "女";
+		}
 		else
 		{
 			std::cout << "请输入正确格式的信息";
@@ -212,8 +214,7 @@ void StudentManager::modify(std::string key)
 				this->sheet[target][3] = "女";	
 		}
 		std::cout << "数据修改成功";
-	}
-	
+	}	
 }
 void StudentManager::print()
 {

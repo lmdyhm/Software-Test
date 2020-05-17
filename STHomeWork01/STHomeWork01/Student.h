@@ -2,7 +2,6 @@
 #include<vector>
 class Student
 {
-	
 public:
 	Student();
 	int getID();
